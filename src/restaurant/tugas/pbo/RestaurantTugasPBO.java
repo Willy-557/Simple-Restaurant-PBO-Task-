@@ -5,17 +5,26 @@
  */
 package restaurant.tugas.pbo;
 
-/**
- *
- * @author William
- */
-public class RestaurantTugasPBO {
+import java.util.Scanner;
 
-    /**
-     * @param args the command line arguments
-     */
+public class RestaurantTugasPBO {
     public static void main(String[] args) {
-        // TODO code application logic here
+        Scanner scanner = new Scanner (System.in);
+        
+        while (true) {
+            System.out.println("---------------------Landing---------------------");
+            System.out.println("1. Register");
+            System.out.println("2. Login");
+            System.out.println("3. Keluar");
+            
+            System.out.print(">> ");
+            int pilihan1 = scanner.nextInt();
+            
+            if (pilihan1 > 3 || pilihan1 < 1) {
+                System.out.println("Anda harus memilih menu 1 - 3!, tidak bisa menu lain");
+            }
+
+        }
     }
     
 }

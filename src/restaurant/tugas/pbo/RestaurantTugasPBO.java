@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package restaurant.tugas.pbo;
 
 import java.util.Scanner;
@@ -10,6 +5,10 @@ import java.util.Scanner;
 public class RestaurantTugasPBO {
     public static void main(String[] args) {
         Scanner scanner = new Scanner (System.in);
+        String[] arrNamaUser = new String[100];
+        String[] arrPassUser = new String[100];
+
+        int ctr_user = 0;
         
         while (true) {
             System.out.println("---------------------Landing---------------------");
@@ -20,11 +19,48 @@ public class RestaurantTugasPBO {
             System.out.print(">> ");
             int pilihan1 = scanner.nextInt();
             
-            if (pilihan1 > 3 || pilihan1 < 1) {
-                System.out.println("Anda harus memilih menu 1 - 3!, tidak bisa menu lain");
+            if (pilihan1 == 3) {
+                System.out.println("Terimakasih!");
+                break;
             }
+            else if (pilihan1 > 3 || pilihan1 < 1) {
+                System.out.println("Anda harus memilih menu 1 - 3!, tidak bisa menu lain");                
+            }
+            else {
+                if (pilihan1 == 1) {
+                    System.out.println("--------------------Register----------------------");
+                    
+                    scanner.nextLine();
+                    System.out.print("Masukan nama : ");
+                    String namaUserBaru = scanner.nextLine();
+                            
+                    
+                    System.out.print("Masukan password : ");
+                    String passUserBaru = scanner.nextLine();
+                    
+                    boolean akunSudahAda = false;
+                    
+                    for (int i = 0; i < ctr_user; i++) {
+                        if (arrNamaUser[i].equals(namaUserBaru)) {
+                            akunSudahAda = true;
+                            break;
+                        }
+                    }
 
+                    if (akunSudahAda) {
+                        System.out.println("Akun sudah ada di sistem, silahkan login ulang!");
+                    }
+                    else {
+                        arrNamaUser[ctr_user] = namaUserBaru;
+                        arrPassUser[ctr_user] = passUserBaru;
+                        ctr_user += 1;
+                        System.out.println("Berhasil menambahkan akun bernama '" + namaUserBaru + "' ke dalam sistem!");
+                    }       
+                }
+//                else if (pilihan1 == 2) {
+                    
+//                }
+            }
         }
     }
-    
 }

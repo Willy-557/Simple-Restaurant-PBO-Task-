@@ -349,7 +349,44 @@ public class RestaurantTugasPBO {
                                         break;
                                     }
                                     else if (pilihanUser1 == 01) {
-                                        System.out.println(".");
+                                        
+                                        System.out.print("Masukan pesanan yang ingin dibatalkan : ");
+                                        int NamaPesananCancel = scanner.nextInt();
+            
+                                        int indexMakananValid = 0;
+                                        
+                                        boolean IndexNoMenuMakanan = false;
+                                        
+                                        for (int i = 0; i < ctr_keranjang; i++) {
+                                            if ((arrKeranjangMenuMakanan[i] != null) && (arrPorsiPesanan[i] != 0)) {
+                                                indexMakananValid += 1;
+                                                
+                                                if (NamaPesananCancel == indexMakananValid) {
+                                                    
+                                                    IndexNoMenuMakanan = true;
+                                                    
+                                                    System.out.print("Jumlah yang dibatalkan : ");
+                                                    int PorsiPesananCancel = scanner.nextInt();
+                                                    
+                                                    if (PorsiPesananCancel < arrPorsiPesanan[i]) {
+                                                        arrPorsiPesanan[i] -= PorsiPesananCancel;
+                                                    }
+                                                    else if (PorsiPesananCancel == arrPorsiPesanan[i]) {
+                                                        arrPorsiPesanan[i] = 0;
+                                                        arrKeranjangMenuMakanan[i] = null;
+                                                        arrKeranjangHargaMakanan[i] = 0;
+                                                    }
+                                                    else {
+                                                        System.out.println("Jumlah yang dimasukkan kebesaran dibanding jumlah yang di-inputkan di awal");
+                                                    }
+                                                    break;
+                                                }   
+                                            }                                            
+                                        }
+                                        
+                                        if (!IndexNoMenuMakanan) {
+                                            System.out.println("No menu tidak valid!");
+                                        }   
                                     }
                                     else {
                                         System.out.println("Harap memasukkan antara menu '00' atau '01' !");

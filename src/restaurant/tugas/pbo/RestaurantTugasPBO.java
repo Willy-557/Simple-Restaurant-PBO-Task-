@@ -327,7 +327,19 @@ public class RestaurantTugasPBO {
                                     System.out.println("Pesanan gagal dipesan, lakukan top up terlebih dahulu");
                                 }
                             }
-                            
+                            else if (pilihanUser == 4) {
+                                System.out.println("***********************Top Up*********************");
+                                System.out.print("Masukan jumlah top up : ");
+                                int topUp = scanner.nextInt();
+                                
+                                if (topUp % 50000 != 0) {
+                                    System.out.println("Hanya melayani top-up kelipatan Rp 50.000");
+                                }
+                                else {
+                                    arrSaldoUser[indexAkun] += topUp;
+                                    System.out.println("Topup sebesar Rp " + topUp + " berhasil di-lakukan!");
+                                }
+                            }
                         }
                     }
                     else {

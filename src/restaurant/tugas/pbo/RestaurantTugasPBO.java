@@ -318,6 +318,15 @@ public class RestaurantTugasPBO {
                                     }
                                 }                                
                             }
+                            else if (pilihanUser == 3) {
+                                if (arrSaldoUser[indexAkun] >= Total) {
+                                    int sisaSaldo = arrSaldoUser[indexAkun] - Total;
+                                    System.out.println("Pesanan berhasil dipesan, sisa kembalian saldo adalah Rp [" + sisaSaldo + "]");
+                                }
+                                else {
+                                    System.out.println("Pesanan gagal dipesan, lakukan top up terlebih dahulu");
+                                }
+                            }
                             
                         }
                     }

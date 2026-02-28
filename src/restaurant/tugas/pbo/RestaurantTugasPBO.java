@@ -7,12 +7,19 @@ public class RestaurantTugasPBO {
         Scanner scanner = new Scanner (System.in);
         String[] arrNamaUser = new String[100];
         String[] arrPassUser = new String[100];
+        int[] arrSaldoUser = new int[100];
+        
+        String[] arrKeranjangMenuMakanan = new String [100];
+        int[] arrKeranjangHargaMakanan = new int [100];
+
+        int[] arrPorsiPesanan = new int[100];
         
         String[] arrMenuMakanan = new String[100];
         int[] arrHargaMakanan = new int[100];
 
         int ctr_user = 0;
         int ctr_makanan = 0;
+        int ctr_keranjang = 0;
         
         arrMenuMakanan[ctr_makanan] = "Nasgor";
         arrHargaMakanan[ctr_makanan] = 10000;
@@ -57,7 +64,6 @@ public class RestaurantTugasPBO {
                     System.out.print("Masukan nama : ");
                     String namaUserBaru = scanner.nextLine();
                             
-                    
                     System.out.print("Masukan password : ");
                     String passUserBaru = scanner.nextLine();
                     
@@ -76,6 +82,7 @@ public class RestaurantTugasPBO {
                     else {
                         arrNamaUser[ctr_user] = namaUserBaru;
                         arrPassUser[ctr_user] = passUserBaru;
+                        arrSaldoUser[ctr_user] = 0;
                         ctr_user += 1;
                         System.out.println("Berhasil menambahkan akun bernama '" + namaUserBaru + "' ke dalam sistem!");
                     }       
@@ -92,6 +99,7 @@ public class RestaurantTugasPBO {
                     String passLogin = scanner.nextLine();
 
                     boolean akunTersedia = false;
+                    int indexAkun = -1;
                     
                     if (namaLogin.equals("admin") && passLogin.equals("admin")) {
                         while (true) {
@@ -163,6 +171,7 @@ public class RestaurantTugasPBO {
                                             while (true) {
                                                 System.out.println("\n%%%%%%%%%% Ubah Menu%%%%%%%%%%%%%");
                                                 for (int i = 0; i < ctr_makanan; i++) {
+                                                    
                                                     System.out.println( (i+1) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
                                                 }
                                                 System.out.println("00. Kembali");
@@ -186,10 +195,10 @@ public class RestaurantTugasPBO {
                                                         
                                                         scanner.nextLine();
                                                         
-                                                        System.out.println("Ubah nama menu : ");
+                                                        System.out.print("Ubah nama menu : ");
                                                         String namaMenuBaruDiubah = scanner.nextLine();
                                                         
-                                                        System.out.println("Ubah harga menu : ");
+                                                        System.out.print("Ubah harga menu : ");
                                                         int hargaMenuBaruDiubah = scanner.nextInt();
                                                         
                                                         arrMenuMakanan[noMenuFix] = namaMenuBaruDiubah;
@@ -200,10 +209,19 @@ public class RestaurantTugasPBO {
                                                     }
                                                 }
                                             }
-                                            
                                         }
-                                        else {
-                                            System.out.println("Harap masukkan menu antara '00' atau '01' atau '02' !");
+                                        else if (pilihanAdmin2 == 02) {   
+                                            System.out.println("%%%%%%%%%% Hapus Menu%%%%%%%%%%%%%");
+                                            for (int i = 0; i < ctr_makanan; i++) {
+                                                System.out.println( (i+1) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                            }
+                                            System.out.println("00. Batal");
+                                            
+                                            System.out.print("Masukan nomor menu yang mau dihapus : ");
+                                            int noMenuYangAkanDihapus = scanner.nextInt();
+                                                
+                                            int noMenuFixDihapus = noMenuYangAkanDihapus - 1;
+                                            
                                         }
                                     } 
                                 }
@@ -215,12 +233,30 @@ public class RestaurantTugasPBO {
                         for (int i = 0; i < ctr_user; i++) {
                             if (arrNamaUser[i].equals(namaLogin) && arrPassUser[i].equals(passLogin)) {
                                 akunTersedia = true;
+                                indexAkun = i;
                             }
                         }
                     }
                     
                     if (akunTersedia) {
-                        System.out.println("tes123");
+                        while (true) {
+                            
+                            int Total = 0;
+                            
+                            System.out.println("***********************CUSTOMER***********************");
+                            System.out.println("Hai, [" + namaLogin +  "]");
+                            System.out.println("Saldo : Rp " + arrSaldoUser[indexAkun]);
+                            System.out.println("1. Pesan makanan");
+                            System.out.println("2. Lihat pesanan");
+                            System.out.println("3. Bayar");
+                            System.out.println("4. Top up");
+                            System.out.println("5. Keluar");
+
+                            System.out.print(">> ");
+                            int pilihanUser = scanner.nextInt();
+
+                            
+                        }
                     }
                     else {
                         System.out.println("Username yang anda masukkan tidak ada di sistem!, silahkan register terlebih dahulu.");

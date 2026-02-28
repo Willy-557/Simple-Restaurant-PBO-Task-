@@ -62,19 +62,43 @@ public class RestaurantTugasPBO {
                     
                     scanner.nextLine();
                     
-                    System.out.print("Masukan username / nama :");
+                    System.out.print("Masukan username / nama : ");
                     String namaLogin = scanner.nextLine();
                     
-                    System.out.print("Masukan password :");
+                    System.out.print("Masukan password : ");
                     String passLogin = scanner.nextLine();
 
+                    boolean akunTersedia = false;
+                    
                     if (namaLogin.equals("admin") && passLogin.equals("admin")) {
-                        System.out.println(".");
+                        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                        System.out.println("ADMIN");
+                        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                        System.out.println("Selamat datang admin");
+                        System.out.println("Kas : ");
+                        System.out.println("1. Tambah Menu");
+                        System.out.println("2. Lihat Menu");
+                        System.out.println("3. Keluar");
+                        
+                        System.out.print(">> ");
+                        int pilihanAdmin1 = scanner.nextInt();
+                        
+                        
                     } 
                     else {
                         for (int i = 0; i < ctr_user; i++) {
-                            
+                            if (arrNamaUser[i].equals(namaLogin) && arrPassUser[i].equals(passLogin)) {
+                                akunTersedia = true;
+                            }
                         }
+                    }
+                    
+                    if (akunTersedia) {
+                        System.out.println("tes123");
+                    }
+                    else {
+                        System.out.println("Username yang anda masukkan tidak ada di sistem!, silahkan register terlebih dahulu.");
+                        continue;
                     }
                 }
             }

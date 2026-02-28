@@ -240,9 +240,6 @@ public class RestaurantTugasPBO {
                     
                     if (akunTersedia) {
                         while (true) {
-                            
-                            int Total = 0;
-                            
                             System.out.println("***********************CUSTOMER***********************");
                             System.out.println("Hai, [" + namaLogin +  "]");
                             System.out.println("Saldo : Rp " + arrSaldoUser[indexAkun]);
@@ -254,12 +251,23 @@ public class RestaurantTugasPBO {
 
                             System.out.print(">> ");
                             int pilihanUser = scanner.nextInt();
-
-                            if (pilihanUser == 1) {
+                            
+                            if (pilihanUser == 5) {
+                                System.out.println("Terimakasih!");
+                                
+                                for (int j = 0; j < ctr_keranjang; j++) {
+                                    arrKeranjangHargaMakanan[j] = 0;
+                                    arrPorsiPesanan[j] = 0;
+                                    arrKeranjangMenuMakanan[j] = null;
+                                }
+                                
+                                break;
+                            }
+                            else if (pilihanUser == 1) {
                                 while (true) {
                                     System.out.println("***********************Pesan Makanan*********************");
-                                    for (int i = 0; i < ctr_makanan; i++) {
-                                        System.out.println( (i+1) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                    for (int z = 0; z < ctr_makanan; z++) {
+                                        System.out.println( (z+1) + ". " + arrMenuMakanan[z] + " - " + "Rp " + arrHargaMakanan[z]);
                                     }
                                     System.out.println("00. Kembali");
 
@@ -279,25 +287,55 @@ public class RestaurantTugasPBO {
                                         else {
                                             int nomorMenuFixYangDipesan = menuDipesan - 1;
                                             
-                                            arrKeranjangMenuMakanan[ctr_keranjang] = arrMenuMakanan[nomorMenuFixYangDipesan];
-                                            arrKeranjangHargaMakanan[ctr_keranjang] = arrHargaMakanan[nomorMenuFixYangDipesan];
-                                            arrPorsiPesanan[nomorMenuFixYangDipesan] += 1;
-                                            ctr_keranjang += 1;
+                                            boolean tempCount = false;
+                                            int indexKeranjang = -1;
+                                            
+                                            for (int i = 0; i < ctr_keranjang; i++) {
+                                                if (arrKeranjangMenuMakanan[i].equals(arrMenuMakanan[nomorMenuFixYangDipesan])) {
+                                                    tempCount = true;
+                                                    indexKeranjang = i;
+                                                }                                                                                                
+                                            }
+                                            
+                                            if (tempCount) {
+                                                arrPorsiPesanan[indexKeranjang] += 1;
+
+                                            }
+                                            else {
+                                                arrKeranjangMenuMakanan[ctr_keranjang] = arrMenuMakanan[nomorMenuFixYangDipesan];
+                                                arrKeranjangHargaMakanan[ctr_keranjang] = arrHargaMakanan[nomorMenuFixYangDipesan];
+                                                arrPorsiPesanan[ctr_keranjang] += 1;
+                                                ctr_keranjang += 1;
+                                            }
                                         }                                        
                                     }  
                                 }                                
                             }
                             else if (pilihanUser == 2) {
+                                
                                 while (true) {
+                                    
+                                    int tempTotal = 0;
+                                    
                                     System.out.println("***********************Lihat Pesanan*********************");
                                     for (int i = 0; i < ctr_keranjang; i++) {
-                                        System.out.println((i+1) + ". " + arrKeranjangMenuMakanan[i] + " - " + arrKeranjangHargaMakanan[i]);
+                                        if ((arrKeranjangMenuMakanan[i] == null) && (arrPorsiPesanan[i] == 0)) {
+                                            continue;
+                                        }
+                                        else {
+                                            System.out.println((i+1) + ". " + arrKeranjangMenuMakanan[i] + " - " + arrPorsiPesanan[i]);
+                                        }
                                     }
-                                    int tempTotal = 0;
-                                    for (int i = 0; i < ctr_keranjang; i++) {
-                                        tempTotal += (arrKeranjangHargaMakanan[i] * arrPorsiPesanan[i]);
+                                    
+                                    for (int j = 0; j < ctr_keranjang; j++) {
+                                        if ((arrKeranjangMenuMakanan[j] == null) && (arrPorsiPesanan[j] == 0)) {
+                                            continue;
+                                        }
+                                        else {
+                                            tempTotal += arrKeranjangHargaMakanan[j] * arrPorsiPesanan[j];                                            
+                                        }
                                     }
-                                    Total = tempTotal;
+                                    
                                     System.out.println("Total : Rp" + tempTotal);
                                     System.out.println("00. Kembali");
                                     System.out.println("01. Batalkan pesanan");
@@ -307,6 +345,7 @@ public class RestaurantTugasPBO {
                                     
                                     if (pilihanUser1 == 00) {
                                         System.out.println("Akan dikembalikan ke menu utama, Terimakasih!");
+                                        
                                         break;
                                     }
                                     else if (pilihanUser1 == 01) {
@@ -319,9 +358,27 @@ public class RestaurantTugasPBO {
                                 }                                
                             }
                             else if (pilihanUser == 3) {
+                                
+                                int Total = 0;
+                                
+                                for (int j = 0; j < ctr_keranjang; j++) {
+                                    if ((arrKeranjangMenuMakanan[j] == null) && (arrPorsiPesanan[j] == 0)) {
+                                        continue;
+                                    }
+                                    else {
+                                        Total += arrKeranjangHargaMakanan[j] * arrPorsiPesanan[j];
+                                    }
+                                }
+                                
                                 if (arrSaldoUser[indexAkun] >= Total) {
-                                    int sisaSaldo = arrSaldoUser[indexAkun] - Total;
-                                    System.out.println("Pesanan berhasil dipesan, sisa kembalian saldo adalah Rp [" + sisaSaldo + "]");
+                                    arrSaldoUser[indexAkun] -= Total;
+                                    System.out.println("Pesanan berhasil dipesan, sisa kembalian saldo adalah Rp [" + arrSaldoUser[indexAkun] + "]");
+                                    
+                                    for (int j = 0; j < ctr_keranjang; j++) {
+                                        arrKeranjangHargaMakanan[j] = 0;
+                                        arrPorsiPesanan[j] = 0;
+                                        arrKeranjangMenuMakanan[j] = null;
+                                    }
                                 }
                                 else {
                                     System.out.println("Pesanan gagal dipesan, lakukan top up terlebih dahulu");
@@ -339,7 +396,7 @@ public class RestaurantTugasPBO {
                                     arrSaldoUser[indexAkun] += topUp;
                                     System.out.println("Topup sebesar Rp " + topUp + " berhasil di-lakukan!");
                                 }
-                            }
+                            }                            
                         }
                     }
                     else {

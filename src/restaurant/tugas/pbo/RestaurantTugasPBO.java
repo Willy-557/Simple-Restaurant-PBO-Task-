@@ -57,9 +57,26 @@ public class RestaurantTugasPBO {
                         System.out.println("Berhasil menambahkan akun bernama '" + namaUserBaru + "' ke dalam sistem!");
                     }       
                 }
-//                else if (pilihan1 == 2) {
+                else if (pilihan1 == 2) {
+                    System.out.println("------------------Login-------------------------");
                     
-//                }
+                    scanner.nextLine();
+                    
+                    System.out.print("Masukan username / nama :");
+                    String namaLogin = scanner.nextLine();
+                    
+                    System.out.print("Masukan password :");
+                    String passLogin = scanner.nextLine();
+
+                    if (namaLogin.equals("admin") && passLogin.equals("admin")) {
+                        System.out.println(".");
+                    } 
+                    else {
+                        for (int i = 0; i < ctr_user; i++) {
+                            
+                        }
+                    }
+                }
             }
         }
     }

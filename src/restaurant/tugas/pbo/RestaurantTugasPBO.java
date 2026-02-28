@@ -255,6 +255,38 @@ public class RestaurantTugasPBO {
                             System.out.print(">> ");
                             int pilihanUser = scanner.nextInt();
 
+                            if (pilihanUser == 1) {
+                                while (true) {
+                                    System.out.println("***********************Pesan Makanan*********************");
+                                    for (int i = 0; i < ctr_makanan; i++) {
+                                        System.out.println( (i+1) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                    }
+                                    System.out.println("00. Kembali");
+
+                                    System.out.print("Pilih menu yang mau dipesan : ");
+                                    int menuDipesan = scanner.nextInt();
+
+                                    if (menuDipesan == 00) {
+                                        System.out.println("Pesanan berhasil ditambahakan ke keranjang!");
+                                        System.out.println("Akan dikembali ke menu utama, Terimkasih!");
+                                        break;
+                                    }
+                                    else {
+                                        if (menuDipesan > ctr_makanan) {
+                                            System.out.println("Nomor menu tidak valid, silahkan diulangi lagi!");
+                                            continue;
+                                        }
+                                        else {
+                                            int nomorMenuFixYangDipesan = menuDipesan - 1;
+                                            
+                                            arrKeranjangMenuMakanan[ctr_keranjang] = arrMenuMakanan[nomorMenuFixYangDipesan];
+                                            arrKeranjangHargaMakanan[ctr_keranjang] = arrHargaMakanan[nomorMenuFixYangDipesan];
+                                            arrPorsiPesanan[nomorMenuFixYangDipesan] += 1;
+                                            ctr_keranjang += 1;
+                                        }                                        
+                                    }  
+                                }                                
+                            }
                             
                         }
                     }

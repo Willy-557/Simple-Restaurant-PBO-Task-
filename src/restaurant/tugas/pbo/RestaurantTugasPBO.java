@@ -7,8 +7,12 @@ public class RestaurantTugasPBO {
         Scanner scanner = new Scanner (System.in);
         String[] arrNamaUser = new String[100];
         String[] arrPassUser = new String[100];
+        
+        String[] arrMenuMakanan = new String[100];
+        int[] arrHargaMakanan = new int[100];
 
         int ctr_user = 0;
+        int ctr_makanan = 0;
         
         while (true) {
             System.out.println("---------------------Landing---------------------");
@@ -71,19 +75,57 @@ public class RestaurantTugasPBO {
                     boolean akunTersedia = false;
                     
                     if (namaLogin.equals("admin") && passLogin.equals("admin")) {
-                        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-                        System.out.println("ADMIN");
-                        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-                        System.out.println("Selamat datang admin");
-                        System.out.println("Kas : ");
-                        System.out.println("1. Tambah Menu");
-                        System.out.println("2. Lihat Menu");
-                        System.out.println("3. Keluar");
-                        
-                        System.out.print(">> ");
-                        int pilihanAdmin1 = scanner.nextInt();
-                        
-                        
+                        while (true) {
+                            System.out.println("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                            System.out.println("ADMIN");
+                            System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                            System.out.println("Selamat datang admin");
+                            System.out.println("Kas : ");
+                            System.out.println("1. Tambah Menu");
+                            System.out.println("2. Lihat Menu");
+                            System.out.println("3. Keluar");
+
+                            System.out.print(">> ");
+                            int pilihanAdmin1 = scanner.nextInt();
+                            
+                            if (pilihanAdmin1 == 3) {
+                                System.out.println("Terimakasih!");
+                                break;
+                            }
+                            else if (pilihanAdmin1 > 3 || pilihanAdmin1 < 1) {
+                                System.out.println("Harap masukkan menu 1 - 3!");
+                                continue;
+                            }
+                            else {
+                                if (pilihanAdmin1 == 1) {
+                                    
+                                    boolean Pemberhenti = false;
+                                    
+                                    while (!Pemberhenti) {
+                                        System.out.println("\n%%%%%%%%%% Tambah Menu%%%%%%%%%%%%%");
+                                    
+                                        scanner.nextLine();
+                                        System.out.print("Nama Menu : ");
+                                        String namaMenuBaru = scanner.nextLine();
+                                        
+                                        if (namaMenuBaru.equals("stop")) {
+                                            Pemberhenti = true;
+                                        }
+                                        else {
+                                            System.out.print("Harga Menu : ");
+                                            int hargaMenuBaru = scanner.nextInt();
+                                            
+                                            arrMenuMakanan[ctr_makanan] = namaMenuBaru;
+                                            arrHargaMakanan[ctr_makanan] = hargaMenuBaru;
+                                            ctr_makanan += 1;
+                                        }
+                                    }
+                                    
+                                    
+                                }
+                            }
+                        }
+  
                     } 
                     else {
                         for (int i = 0; i < ctr_user; i++) {

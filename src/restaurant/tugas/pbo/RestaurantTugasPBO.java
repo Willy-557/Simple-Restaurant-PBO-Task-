@@ -287,6 +287,37 @@ public class RestaurantTugasPBO {
                                     }  
                                 }                                
                             }
+                            else if (pilihanUser == 2) {
+                                while (true) {
+                                    System.out.println("***********************Lihat Pesanan*********************");
+                                    for (int i = 0; i < ctr_keranjang; i++) {
+                                        System.out.println((i+1) + ". " + arrKeranjangMenuMakanan[i] + " - " + arrKeranjangHargaMakanan[i]);
+                                    }
+                                    int tempTotal = 0;
+                                    for (int i = 0; i < ctr_keranjang; i++) {
+                                        tempTotal += (arrKeranjangHargaMakanan[i] * arrPorsiPesanan[i]);
+                                    }
+                                    Total = tempTotal;
+                                    System.out.println("Total : Rp" + tempTotal);
+                                    System.out.println("00. Kembali");
+                                    System.out.println("01. Batalkan pesanan");
+                                    
+                                    System.out.print(">> ");
+                                    int pilihanUser1 = scanner.nextInt();
+                                    
+                                    if (pilihanUser1 == 00) {
+                                        System.out.println("Akan dikembalikan ke menu utama, Terimakasih!");
+                                        break;
+                                    }
+                                    else if (pilihanUser1 == 01) {
+                                        System.out.println(".");
+                                    }
+                                    else {
+                                        System.out.println("Harap memasukkan antara menu '00' atau '01' !");
+                                        continue;
+                                    }
+                                }                                
+                            }
                             
                         }
                     }

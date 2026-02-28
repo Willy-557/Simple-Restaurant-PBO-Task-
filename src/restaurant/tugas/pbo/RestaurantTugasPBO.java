@@ -11,6 +11,8 @@ public class RestaurantTugasPBO {
         
         String[] arrKeranjangMenuMakanan = new String [100];
         int[] arrKeranjangHargaMakanan = new int [100];
+        
+        int KasRestoran = 0;
 
         int[] arrPorsiPesanan = new int[100];
         
@@ -107,7 +109,7 @@ public class RestaurantTugasPBO {
                             System.out.println("ADMIN");
                             System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
                             System.out.println("Selamat datang admin");
-                            System.out.println("Kas : ");
+                            System.out.println("Kas : Rp " + KasRestoran);
                             System.out.println("1. Tambah Menu");
                             System.out.println("2. Lihat Menu");
                             System.out.println("3. Keluar");
@@ -339,7 +341,7 @@ public class RestaurantTugasPBO {
                                             int indexKeranjang = -1;
                                             
                                             for (int i = 0; i < ctr_keranjang; i++) {
-                                                if (arrKeranjangMenuMakanan[i].equals(arrMenuMakanan[nomorMenuFixYangDipesan])) {
+                                                if (arrKeranjangMenuMakanan[i] != null && arrKeranjangMenuMakanan[i].equals(arrMenuMakanan[nomorMenuFixYangDipesan])) {
                                                     tempCount = true;
                                                     indexKeranjang = i;
                                                 }                                                                                                
@@ -458,6 +460,7 @@ public class RestaurantTugasPBO {
                                 
                                 if (arrSaldoUser[indexAkun] >= Total) {
                                     arrSaldoUser[indexAkun] -= Total;
+                                    KasRestoran += Total;
                                     System.out.println("\nPesanan berhasil dipesan, sisa kembalian saldo adalah Rp [" + arrSaldoUser[indexAkun] + "]");
                                     
                                     for (int j = 0; j < ctr_keranjang; j++) {

@@ -152,8 +152,16 @@ public class RestaurantTugasPBO {
                                     while (true) {
                                         System.out.println("\n%%%%%%%%%% Lihat Menu%%%%%%%%%%%%%");
                                     
+                                        int Nomorrs = 1;
                                         for (int i = 0; i < ctr_makanan; i++) {
-                                            System.out.println( (i+1) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                            if (arrMenuMakanan[i] == null && arrHargaMakanan[i] == 0) {
+                                                continue;
+                                            }
+                                            else {
+                                                System.out.println( (Nomorrs) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                                Nomorrs++;
+                                            }
+
                                         }
                                         
                                         System.out.println("00. Kembali");
@@ -170,9 +178,16 @@ public class RestaurantTugasPBO {
                                         else if (pilihanAdmin2 == 01) {
                                             while (true) {
                                                 System.out.println("\n%%%%%%%%%% Ubah Menu%%%%%%%%%%%%%");
+                                                int Nomorr = 1;
                                                 for (int i = 0; i < ctr_makanan; i++) {
+                                                    if (arrMenuMakanan[i] == null && arrHargaMakanan[i] == 0) {
+                                                        continue;
+                                                    }
+                                                    else {
+                                                        System.out.println( (Nomorr) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                                        Nomorr++;
+                                                    }
                                                     
-                                                    System.out.println( (i+1) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
                                                 }
                                                 System.out.println("00. Kembali");
                                                 
@@ -210,24 +225,50 @@ public class RestaurantTugasPBO {
                                                 }
                                             }
                                         }
-                                        else if (pilihanAdmin2 == 02) {   
-                                            System.out.println("%%%%%%%%%% Hapus Menu%%%%%%%%%%%%%");
-                                            for (int i = 0; i < ctr_makanan; i++) {
-                                                System.out.println( (i+1) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                        else if (pilihanAdmin2 == 02) {
+                                            while (true) {
+                                                System.out.println("%%%%%%%%%% Hapus Menu%%%%%%%%%%%%%");
+                                                int Nomor = 1;
+                                                for (int i = 0; i < ctr_makanan; i++) {
+                                                    if ((arrMenuMakanan[i] == null) && (arrHargaMakanan[i] == 0)) {
+                                                        continue;
+                                                    }
+                                                    else {
+                                                        System.out.println( (Nomor) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                                        Nomor++;
+                                                    }
+                                                }
+                                                System.out.println("00. Batal");
+
+                                                System.out.print("Masukan nomor menu yang mau dihapus : ");
+                                                int noMenuYangAkanDihapus = scanner.nextInt();
+
+                                                if (noMenuYangAkanDihapus == 00) {
+                                                    System.out.println("Akan dikembali ke halaman 'Lihat menu', Terimakasih!");
+                                                    break;
+                                                }
+                                                else {
+                                                    if (noMenuYangAkanDihapus > ctr_makanan) {
+                                                        System.out.println("No menu tidak valid, silahkan ulang lagi!");
+                                                    }
+                                                    else {
+                                                        int noMenuFixDihapus = noMenuYangAkanDihapus - 1;
+                                                        
+                                                        
+                                                        arrMenuMakanan[noMenuFixDihapus] = null;
+                                                        arrHargaMakanan[noMenuFixDihapus] = 0;
+                                                        
+                                                    }
+                                                }                                                
                                             }
-                                            System.out.println("00. Batal");
-                                            
-                                            System.out.print("Masukan nomor menu yang mau dihapus : ");
-                                            int noMenuYangAkanDihapus = scanner.nextInt();
-                                                
-                                            int noMenuFixDihapus = noMenuYangAkanDihapus - 1;
-                                            
+                                        }
+                                        else {
+                                            System.out.println("Input tidak valid, harap memasukkan antara '00' atau '01' atau '02' !");
                                         }
                                     } 
                                 }
                             }
-                        }
-  
+                        }  
                     } 
                     else {
                         for (int i = 0; i < ctr_user; i++) {
@@ -266,8 +307,16 @@ public class RestaurantTugasPBO {
                             else if (pilihanUser == 1) {
                                 while (true) {
                                     System.out.println("***********************Pesan Makanan*********************");
-                                    for (int z = 0; z < ctr_makanan; z++) {
-                                        System.out.println( (z+1) + ". " + arrMenuMakanan[z] + " - " + "Rp " + arrHargaMakanan[z]);
+                                    int Nomorr = 1;
+                                    for (int i = 0; i < ctr_makanan; i++) {
+                                        if (arrMenuMakanan[i] == null && arrHargaMakanan[i] == 0) {
+                                            continue;
+                                        }
+                                        else {
+                                            System.out.println( (Nomorr) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                            Nomorr++;
+                                        }
+
                                     }
                                     System.out.println("00. Kembali");
 
@@ -316,14 +365,15 @@ public class RestaurantTugasPBO {
                                 while (true) {
                                     
                                     int tempTotal = 0;
-                                    
+                                    int NomorPesanan = 1;
                                     System.out.println("***********************Lihat Pesanan*********************");
                                     for (int i = 0; i < ctr_keranjang; i++) {
                                         if ((arrKeranjangMenuMakanan[i] == null) && (arrPorsiPesanan[i] == 0)) {
                                             continue;
                                         }
                                         else {
-                                            System.out.println((i+1) + ". " + arrKeranjangMenuMakanan[i] + " - " + arrPorsiPesanan[i]);
+                                            System.out.println((NomorPesanan) + ". " + arrKeranjangMenuMakanan[i] + " - " + arrPorsiPesanan[i]);
+                                            NomorPesanan++;
                                         }
                                     }
                                     
@@ -433,7 +483,11 @@ public class RestaurantTugasPBO {
                                     arrSaldoUser[indexAkun] += topUp;
                                     System.out.println("Topup sebesar Rp " + topUp + " berhasil di-lakukan!");
                                 }
-                            }                            
+                            }
+                            else {
+                                System.out.println("Input tidak valif, Harus memasukkan antara menu 1 - 5!");
+                                continue;
+                            }
                         }
                     }
                     else {

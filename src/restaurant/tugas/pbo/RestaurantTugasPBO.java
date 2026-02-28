@@ -14,6 +14,22 @@ public class RestaurantTugasPBO {
         int ctr_user = 0;
         int ctr_makanan = 0;
         
+        arrMenuMakanan[ctr_makanan] = "Nasgor";
+        arrHargaMakanan[ctr_makanan] = 10000;
+        ctr_makanan += 1;
+        
+        arrMenuMakanan[ctr_makanan] = "Nasi Campur";
+        arrHargaMakanan[ctr_makanan] = 20000;
+        ctr_makanan += 1;
+        
+        arrMenuMakanan[ctr_makanan] = "Ayam Goreng";
+        arrHargaMakanan[ctr_makanan] = 15000;
+        ctr_makanan += 1;
+        
+        arrMenuMakanan[ctr_makanan] = "Es Teh";
+        arrHargaMakanan[ctr_makanan] = 3000;
+        ctr_makanan += 1;
+        
         while (true) {
             System.out.println("---------------------Landing---------------------");
             System.out.println("1. Register");
@@ -119,9 +135,34 @@ public class RestaurantTugasPBO {
                                             arrHargaMakanan[ctr_makanan] = hargaMenuBaru;
                                             ctr_makanan += 1;
                                         }
-                                    }
+                                    }   
+                                }
+                                else if (pilihanAdmin1 == 2) {
+                                    while (true) {
+                                        System.out.println("\n%%%%%%%%%% Lihat Menu%%%%%%%%%%%%%");
                                     
-                                    
+                                        for (int i = 0; i < ctr_makanan; i++) {
+                                            System.out.println( (i+1) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                        }
+                                        
+                                        System.out.println("00. Kembali");
+                                        System.out.println("01. Ubah Menu");
+                                        System.out.println("02. Hapus Menu");
+                                        
+                                        System.out.print(">> ");
+                                        String pilihanAdmin2 = scanner.nextLine();
+                                        
+                                        if (pilihanAdmin2.equals("00")) {
+                                            System.out.println("Akan dikembali ke menu admin, terimakasih!");
+                                            break;
+                                        }
+                                        else if (pilihanAdmin2.equals("01")) {
+                                            System.out.println("");
+                                        }
+                                        else {
+                                            System.out.println("Harap masukkan menu antara '00' atau '01' atau '02' !");
+                                        }
+                                    } 
                                 }
                             }
                         }

@@ -16,19 +16,22 @@ public class RestaurantTugasPBO {
         
         arrMenuMakanan[ctr_makanan] = "Nasgor";
         arrHargaMakanan[ctr_makanan] = 10000;
-        ctr_makanan += 1;
+        ctr_makanan++;
+
         
         arrMenuMakanan[ctr_makanan] = "Nasi Campur";
         arrHargaMakanan[ctr_makanan] = 20000;
-        ctr_makanan += 1;
+        ctr_makanan++;
+
         
         arrMenuMakanan[ctr_makanan] = "Ayam Goreng";
         arrHargaMakanan[ctr_makanan] = 15000;
-        ctr_makanan += 1;
+        ctr_makanan++;
+
         
         arrMenuMakanan[ctr_makanan] = "Es Teh";
         arrHargaMakanan[ctr_makanan] = 3000;
-        ctr_makanan += 1;
+        ctr_makanan++;
         
         while (true) {
             System.out.println("---------------------Landing---------------------");
@@ -150,14 +153,54 @@ public class RestaurantTugasPBO {
                                         System.out.println("02. Hapus Menu");
                                         
                                         System.out.print(">> ");
-                                        String pilihanAdmin2 = scanner.nextLine();
+                                        int pilihanAdmin2 = scanner.nextInt();
                                         
-                                        if (pilihanAdmin2.equals("00")) {
+                                        if (pilihanAdmin2 == 00) {
                                             System.out.println("Akan dikembali ke menu admin, terimakasih!");
                                             break;
                                         }
-                                        else if (pilihanAdmin2.equals("01")) {
-                                            System.out.println("");
+                                        else if (pilihanAdmin2 == 01) {
+                                            while (true) {
+                                                System.out.println("\n%%%%%%%%%% Ubah Menu%%%%%%%%%%%%%");
+                                                for (int i = 0; i < ctr_makanan; i++) {
+                                                    System.out.println( (i+1) + ". " + arrMenuMakanan[i] + " - " + "Rp " + arrHargaMakanan[i]);
+                                                }
+                                                System.out.println("00. Kembali");
+                                                
+                                                System.out.print("Masukan nomor menu yang mau diubah: ");
+                                                int noMenuYangMauDiubah = scanner.nextInt();
+                                                
+                                                if (noMenuYangMauDiubah == 00) {
+                                                    System.out.println("Akan dikembalikan ke halaman 'Lihat Menu', Terimakasih!");
+                                                    break;
+                                                }
+                                                else {
+                                                    if (noMenuYangMauDiubah > ctr_makanan) {
+                                                        System.out.println("No menu tidak valid, silahkan diulang!");
+                                                        continue;
+                                                    }
+                                                    else {
+                                                        int noMenuFix = noMenuYangMauDiubah - 1 ;
+                                                        
+                                                        System.out.println("\n%%%%%%%%%% Ubah Menu%%%%%%%%%%%%%");
+                                                        
+                                                        scanner.nextLine();
+                                                        
+                                                        System.out.println("Ubah nama menu : ");
+                                                        String namaMenuBaruDiubah = scanner.nextLine();
+                                                        
+                                                        System.out.println("Ubah harga menu : ");
+                                                        int hargaMenuBaruDiubah = scanner.nextInt();
+                                                        
+                                                        arrMenuMakanan[noMenuFix] = namaMenuBaruDiubah;
+                                                        arrHargaMakanan[noMenuFix] = hargaMenuBaruDiubah;
+                                                        
+                                                        System.out.println("Nama menu dan harga pada menu ke-" + noMenuYangMauDiubah + " berhasil diubah!");
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            
                                         }
                                         else {
                                             System.out.println("Harap masukkan menu antara '00' atau '01' atau '02' !");

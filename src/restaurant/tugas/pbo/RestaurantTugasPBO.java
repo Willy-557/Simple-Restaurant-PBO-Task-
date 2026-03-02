@@ -43,7 +43,7 @@ public class RestaurantTugasPBO {
         ctr_makanan++;
         
         while (true) {
-            System.out.println("\n---------------------Landing---------------------");
+            System.out.println("\n---------------------Landing----------------------");
             System.out.println("1. Register");
             System.out.println("2. Login");
             System.out.println("3. Keluar");

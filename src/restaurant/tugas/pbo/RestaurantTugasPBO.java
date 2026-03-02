@@ -210,6 +210,8 @@ public class RestaurantTugasPBO {
                                                         
                                                         System.out.println("\n%%%%%%%%%% Ubah Menu%%%%%%%%%%%%%");
                                                         
+                                                        System.out.println("Ubah Menu : " + arrMenuMakanan[noMenuFix] + " - " + arrHargaMakanan[noMenuFix]);
+                                                        
                                                         scanner.nextLine();
                                                         
                                                         System.out.print("Ubah nama menu : ");

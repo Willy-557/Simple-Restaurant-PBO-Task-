@@ -258,8 +258,15 @@ public class RestaurantTugasPBO {
 
                                                         System.out.println("\nMenu bernama '" + arrMenuMakanan[noMenuFixDihapus] + "' berhasil di-hapus!");
 
-                                                        arrMenuMakanan[noMenuFixDihapus] = null;
-                                                        arrHargaMakanan[noMenuFixDihapus] = 0;                                                                                                               
+                                                        for (int i = noMenuFixDihapus; i < arrHargaMakanan.length-1; i++) {
+                                                            arrMenuMakanan[i] = arrMenuMakanan[i+1];
+                                                            arrHargaMakanan[i] = arrHargaMakanan[i+1];                                                            
+                                                        }
+                                                        
+                                                        ctr_makanan -= 1;
+                                                        arrHargaMakanan[ctr_makanan] = 0;
+                                                        arrMenuMakanan[ctr_makanan] = null;
+                                                        
                                                     }
                                                 }                                                
                                             }
